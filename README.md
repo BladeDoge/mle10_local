@@ -1,2 +1,4 @@
+<<<<<<< HEAD
 # mle10_local
-local version of mle10 student repo
+This is the mle10 student repo of Denise Blady for the MLE Fourth Brain Course.
+
