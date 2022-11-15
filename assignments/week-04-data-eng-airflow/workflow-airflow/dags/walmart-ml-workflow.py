@@ -7,9 +7,9 @@ from airflow.operators.bash import BashOperator
 with DAG(
     'walmart-ml-workflow',
     default_args={
-        'owner': 'Flora Xu', # YOUR NAME HERE
+        'owner': 'Denise Blady', 
         'depends_on_past': False,
-        'email': ['flora@fourthbrain.ai'], # YOUR EMAIL HERE
+        'email': ['denise.blady@gmail.com'], 
         'email_on_failure': False,
         'email_on_retry': False,
         'retries': 1,
