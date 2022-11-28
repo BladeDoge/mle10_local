@@ -1,0 +1,98 @@
+===========================Algorithm Understanding
+Q: How does the Gradient-Boosted Tree Algorithm work in Classification? 
+How does Gradient Boost differ from AdaBoost and Logistic Regression?
+A: Gradient-Boosted Tree Algorighm uses a simple initial prediction and creates
+residuals from it. These residuals are then used as target values to build the first
+tree which is multiplied by a learning rate(LR) and added to the simple initial 
+prediction. Then the residuals from Tree 1*LR + simple prediction are used as target
+values for the second tree which is again built and multiplied by the learning rate
+(LR). Again, this is added to previous iterations to get a prediction aka: simple 
+prediction + T1*LR + T2*LR. Residuals are passed along as target values for the 
+third tree. This continues until a specified number of trees is met or there is 
+no more improvement. Gradient-Boosted trees rely on building many trees to get
+improvements in predictions across all observations, aka combine many weak models
+to create a strong predictive model. The final prediction is shown as simple 
+1/(1 + e^(prediction + T1*LR + ...+TN*LR)) = p(x).  
+
+Gradient-Boosted Tree is different from Logistic Regression for many reasons, 
+even though both classify.
+First, Logistic regression only makes one model. Gradient-Boosted Tree makes many.
+Second, Gradient-Boosted Tree is a tree-based model and Logistic Regression is not.
+        This changes some math. 
+Third, the target value for Gradient-Boosted Tree are the residuals NOT the target
+       variable identified in the dataset. 
+Fourth, Logistic regression uses weights on features rather than a tree node that 
+        picks a feature to use to either make branches or leaves. 
+
+Gradient-Boosted Tree is different from AdaBoost in more subtle ways and they share
+more similarities with each other than a Logistic Regression.
+First, AdaBoost uses weights and the target value and assigns higher weights to
+       miss-classified examples. These updated weights are then passed to the 
+       next tree model iteration. Gradient-Boosted trees use residuals. 
+Second, The final model in AdaBoos uses the weighted average of the individual
+        models, whereas Gradient-Boosted trees the final prediction is built 
+        up over the trees to make one final prediction like so: 
+        1/(1 + e^(prediction + T1*LR + ...+TN*LR)) = p(x).
+
+===========================Interview Readiness
+Q: What is a Delta Lake and how does it offer a solution to building reliable data pipelines?
+A: Delta Lake is an open source storage layer that brings data reliability to data lakes.
+ It accomplishes this by providing ACID (atomicity, consistency, isolation, durability) 
+transactions. It also provides DML (Data Manipulation Language) support, allowing the user to 
+efficiently UPSERT or DELETE data (DELETE is really useful for GDPR compliance but VACUUM is 
+also offered to permanently delete from all older table versions as well). Delta Lake also 
+provides a RESTORE feature to access or revert to earlier states of a table. Additionally, 
+Delta Lake has optimistic concurrency control, which provides transactional guarantees 
+between writes without impacting performance. Delta Lake also has an 'OPTIMIZE' fxn to 
+compact many smaller files into one compact file. Delta Lake also offers 'schema enforcement'
+ ensuring that writes to a table are rejected if they do not match the table's schema, thus 
+helping protect Data Quality. 
+
+===========================Interview Readiness
+Q: When working with Pandas, we use the class pandas.core.frame.DataFrame and when working 
+with the pandas API in Spark, we use the class pyspark.pandas.frame.DataFrame, are these 
+the same, explain why or why not?
+A: These are not the same. They are seperate classes that provides a 'DataFrame' 
+option. Pandas works on a single machine (not distributed) and is known for its 
+useful commands and aesthetically pleasing outputs, but it is slow on really large dataframes.
+Pandas API in Spark class is distributed, which allows us to use the speed and scale of Spark 
+but with all the useful commands and aesthetically pleasing outputs from Pandas. Of note, 
+Pandas API in Spark is still working on fully implementing some Pandas libraries. 
+Link: https://spark.apache.org/docs/latest/api/python/user_guide/pandas_on_spark/supported_pandas_api.html
+
+
+===========================Interview Readiness
+Q: What is a Machine Learning Pipeline is and why it’s important? 
+What are the steps in a Machine Learning workflow?
+A: A Machine Learning Pipeline is an end-to-end construct that 
+orchestrates the flow of data into, and output from, a machine learning model. 
+Put another way, it is a sequence of steps organized in a workflow as a means 
+to automate the end-to-end process of creating a machine learning 
+model. Two key distinctions for pipelines are whether they focus on automating 
+the processing of data and those that create independent reusable parts that
+can make model building more efficient. For example, Databricks MLLib uses 2 
+basic types of pipeline stages. They include 'Tranformer' and 'Estimator'.
+Machine Learning Pipelines are important because they allow us to scale the 
+ML system when we start to have to deal with some significant problems like 
+'Volume' (eg: deploying multiple versions of same model with identical workflows),
+'Variety' (eg: expanding model portfolio might require code reuse and copy/paste
+           is not the best answer.)
+'Versioning' (eg: many different versions of data might cause need to manually
+              update scripts and this is very time consuming and potentially 
+              error-prone.)
+A pipeline architecture allows you work at 
+'Volume' (only call parts of the Workflow when you need them)
+'Variety' (easy to build new pipelines from tasks in other pipelines)
+'Versioning (pipelines use shared services that you can update once without having 
+             to go into each build pipeline)
+Lastly, Machine Learning Pipelines are made to work with distributed systems
+and these distributed systems allow processing data at faster speeds. This
+'Velocity' is important especially for ML systems where speed is critical and
+larger sets are too slow on monolithic systems. Put altogether, Machine Learning
+Pipelines allow ML Engineers to iterate very fast over very large data sets,
+ensuring that each pass through a specific pipeline always follows the same tasks.
+
+The big steps of the Machine Learning workflow are Retrieving the Data, Data
+Processing (Clean and Explore the Data, Prepare/Transform Data), Modeling 
+(Develop and Train Model, Validate/Evaluate Model), and Deployment(Deploy
+Model to Production, Monitor and update model  & data). 
