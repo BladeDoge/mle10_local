@@ -1,0 +1,8 @@
+,Mean absolute error [MPG]
+linear_model,2.5436503887176514
+dnn_model,1.682694673538208
+reloaded,1.682694673538208
+dnn_model_elu,1.8110568523406982
+dnn_model_leakyrelu,1.7432268857955933
+dnn_model_leakyrelu_reg,1.8675214052200317
+ExtraTreeRegressor,1.7845564625850345
