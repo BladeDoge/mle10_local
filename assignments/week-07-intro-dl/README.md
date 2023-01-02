@@ -26,4 +26,4 @@ For this assignment, we will use Google Colab. All the dependencies will be inst
 If you are not familiar with Google Colab, do an exercise: upload [imports.ipynb](nb/imports.ipynb) to your Google Drive,  open it in Google Colab, and make sure of no errors when running all the cells. Refer to [Google Colab](https://colab.research.google.com/) or contact an instructor for assistance.
 
 ## Background
-Please review the weekly narrative [here](https://www.notion.so/Week-6-Supervised-Machine-Learning-be220755e6f94fe78f3b97f7b1b4530e)
+Please review the weekly narrative [here](https://www.notion.so/Week-7-Deep-Learning-1e4cd4ba20794b3ebd8e99ccec1e45fa)
