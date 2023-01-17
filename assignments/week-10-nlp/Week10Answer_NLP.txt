@@ -1,0 +1,68 @@
+===============================Algorithm Understanding
+Q: How does the Naive Bayes Classifier work?
+A: The Naive Bayes Classifier is based on the Bayes' Theorem where the
+   naive comes from the assumption that features in the dataset are 
+   mutually independent. First, it uses class conditional probabilities  in the
+  form of P(x|w) or Probability of the data on condition of class w or 
+  put another way "How likely is it to observe x given it belongs to class w?"
+  Essentially, class conditional probabilities are likelihoods. Second it uses
+  Prior probabilities or class priors. This takes the form of P(w) and can be 
+  stated as "probability that object is class w". This can be determined sometimes
+  by given distributions. Third, it uses Evidence of P(x) which is the 
+  "probability of encountering a particular pattern x". P(x) can be calculated
+   if you know the other pieces so far. See formula below: 
+   P(x) = P(x|w)*P(w) + P(x|w-complement)*P(w-complement). 
+   
+   Once you have the class conditional probabilities, prior probabilities, and 
+   evidence, Niave Bayes constructs Posterior probabilities as the answer to 
+   classifying whether an object is more likely one class or another or P(w|x).
+
+Q: What is Posterior Probability?
+A: Posterior Probability = Conditional probability*Prior Probability
+                           -----------------------------------------
+                                         Evidence
+
+   or put in words "What is the probability that a particular object(x)
+   belongs to class w given its observed feature values?"
+   Another way to write the above formula is the below: 
+   Posterior Probability P(w|x) = P(x|w)*P(w)
+                                  -----------     where | means "given" 
+                                      P(x)
+
+===============================Interview Readiness
+Q: What is the difference between stemming and lemmatization in NLP?
+A: Stemming  is a process that stems or removes the last few characters
+   from the word, such as 'Caring' turning to 'Car'. Lemmatization is 
+   similar but uses context and converts the word to a more meaningful 
+   base form, called a lemma. A good example is 'Caring' becomes 'Care'. 
+   Lemmatization is computationally expensive, wherease stemming is not
+   as performance intensive. Lastly, you need to know a bit about the 
+   target language's structure to do lemmatization, which is why stemming
+   might be easier at first.
+
+Q: What is Word2Vec and how does it work?
+A: Word2Vec is a shallow, two-layer neural networks which is trained 
+   to reconstruct linguistic contexts of words. It takes as its input
+   a large corpus of words and produces a vector space with each unique 
+   word in the corpus being assigned a corresponding vector in the space.
+   Word vectors are positioned in the vector space such that words that 
+   share common contexts in the corpus are located in close proximity 
+   to one another in the space. It comes in two flavors, the 
+   Continuous Bag-of-Words (CBOW) model and the Skip-Gram model. CBOW 
+   predicts target words (e.g. ‘mat’) from the surrounding context words 
+   (‘the cat sits on the’). Skip-gram predicts surrounding context words 
+   from the target words (inverse of CBOW). For full details see: 
+   https://israelg99.github.io/2017-03-23-Word2Vec-Explained/
+
+   Additionally, Word2Vec makes the word embeddings by using a simple neural 
+   network with a single hidden layer, and like all neural networks, it has 
+   weights, and during training, its goal is to adjust those weights to 
+   reduce a loss function. However, Word2Vec is not going to be used for the 
+   task it was trained on, instead, we will just take its hidden weights, 
+   use them as our word embeddings, and toss the rest of the model.
+
+Q: When to use GRU over LSTM?
+A: GRU is good to use when you need to build bigger models that need to run faster
+   since GRU is simpler (less gates) and runs faster. GRUs may also be beneficial 
+   for datasets that don't require the additional more sophisticated output management, 
+   aka controlling output from a unit in an RNN. 
