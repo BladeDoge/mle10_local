@@ -1,0 +1,45 @@
+=================================Algorithm Understanding
+Q: In the transformer architecture in the paper "Attention Is All You Need", 
+   how does Multi-head Attention work?
+A: Multi-head Attention uses several 'Scaled Dot-Product Attention' attention 
+   layers running in parallel, enabling it to jointly attend to information
+   from different representative subspaces at different positions. To do this
+   it linearly projects the queries, keys, and values 'h' times from different
+   learned linear projection to d_k,d_k,d_v dimensions respectively. On each of
+   these projected versions of the queries, keys, and values, the attention 
+   function is performed in parallel, giving d_v dimensional output values. 
+   These are concatenated and once again projected to give final values.
+
+=================================Interview Readiness
+Q: What is the main idea behind Positional Encoding?
+A: Positional encoding describes the location or position of an entity in a sequence
+   so that each position is assigned a unique representation. The main idea for 
+   doing this is to make use of the order of the sequence aka context of knowing what
+   words come before and after it and where it lies in a sentence 
+
+Q: What is EarlyStopping and why do we use it?
+A: Early Stopping is a form of regularization where we treat the number of training
+   epochs as a hyperparameter that is tuned. For example we can do this by monitoring
+   performance or stopping on a set trigger (such as increased validation dataset
+   loss compared to the prior training epoch). We utilize Early Stopping to help 
+   prevent overfitting or put another way 'train the model enough to generalize
+   but not enough to learn the statistical noise of the training dataset'. 
+
+Q: How would explain what a transformer model is to business stakeholders (at a high level)?
+A: Put simpler, a transformer takes in a sequence of data, uses an encoder to turn it into code, 
+   then the decoder learns how to reconstruct the encoded data into some desired output sequence. This could
+   a translation from one language to another, text summarization, text generation given a prompt, 
+   playing chess, image processing etc. Transformers excel at separating the signals from the noise 
+   through attention in parallel. It isn't always the best tool to use but it is a very versatile model 
+   if you can break your problem down into sequences.
+
+   A concrete example: 
+   A transformer model transforms one sequence into another. For example 'Why did the banana
+   cross the road?' It takes a sequence of tokens (words) and predicts the next word after it
+   , aka encodings. It does this via an Encoder that defines which parts of the input sentence 
+   is relevant to each other. The decoder then takes all the encodings and their context to 
+   generate the output aka the french equivlanet. The transformer model does not necessarily process data in 
+   order but rather uses attention in parallel (looking in many directions) to provide context 
+   to bring meaning to each word in the sequence.
+
+    
