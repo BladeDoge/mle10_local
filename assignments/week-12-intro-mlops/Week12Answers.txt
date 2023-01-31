@@ -1,0 +1,67 @@
+========================================Algorithm Understanding
+Q: How does the Prophet Algorithm differ from an LSTM?
+A: An LSTM is a type of node in a recurrent neural network. An LSTM network is therefore a recurrent neural network. 
+   LSTM is 'Long short-term memory'. The goal of the LSTM is to learn the important parts of sequences seen so far
+   are forget the less important ones via 'gates'. LSTM network requires careful hyperparameter tuning and it can work
+   on other types of data besides time series. An LSTM network also has significantly more parameters than prophet. 
+   For example, 228K parameters for LSTM versus 4 for Prophet.
+
+   Prophet is fundamentally different and was specially designed for time series values. It is an additive model and 
+   extends generalized linear models (GLM) by using non-linear smoothing functions. For Prophet paper, see: 
+   Taylor SJ, Letham B. 2017. Forecasting at scale. PeerJ Preprints 5:e3190v2 https://doi.org/10.7287/peerj.preprints.3190v2. 
+   Of key noted, it has an optional analyst in the loop approach that allows an analyst to apply domain knowledge to the 
+   algorithm without knowing the math. This is accomplished via tuning hyperparamters such as 'changepoints', 'seasonality',
+   'holidays', and 'fourier order'. Changepoints define trend changes. Seasonality are the periodic functions that affect 
+    the time series, which can be set or defaults used. Holidays allows the analyst to control which holidays to model. 
+    Fourier order is used with the seasonality function and determines how fast it changes and adapts the fit. Overall the
+    math for Prophet is much simpler. See below: 
+    y_t = g(t) + s(t) + h(t) + epsilon_t
+    where g(t) is the general trend of the series, s(t) is the seasonality component, h(t) is the holidays component, and 
+    epsilon_t is the error term. 
+    As you can see, this is a much different model than LSTM.
+   
+
+Q: Why does an LSTM have poor performance against ARIMA and Prophet for Time Series?
+A: LSTMs require careful hyperparameter tuning in order to achieve good results. This can make it hard for the LSTM
+   to compete with ARIMA and Prophet without significant tuning. Additionally, LSTMs have significantly more parameters
+   compared to ARIMA and prophet. Say a LSTM has 228K, Prophet has 4, and ARIMA has 3. This means that LSTM can severely
+   overfit if the training set is too small, even if you apply regularization techniques (dropout etc.). ARIMA and Prophet
+   have much much fewer parameters and can handle small and large datasets. In summary, LSTMs require very large datasets
+   and very careful hyperparameter tuning in order to achieve good results and even then it is not a model specifically
+   taking time series data into account. ARIMA and Prophet can handle all dataset sizes and are more specialized for 
+   time series data. 
+
+========================================Interview Readiness
+Q: What is exponential smoothing and why is it used in Time Series Forecasting?
+A: Exponential Smoothing is a method to produce a smoothed time series by assigning exponentially decreasing
+   weights as the observations get older. In other words, recent observations are given more weight than older
+   observations. If one was to look at a line chart, the original values would be erractic and jump around a lot. 
+   The exponentially smoothed time series shown as a line "gliding" from start to finish with no erractic jumps. 
+   Exponential Smoothing is used in Time Series Forecasting because it is better for short term forecasts and
+   it ensures that data spikes aren't as detrimental to forecasts since they are "smoothed" out.
+   It is especially useful for short term forecasts, since recent observations have more weight than older ones, 
+   which might be key to the problem the model is trying to solve. For example, finance problems were what 
+   happened last month is a lot more relevant than 4 years ago. One can also view this from an inventory perspective. 
+   Say we made a chicken supply forecast for the next month to inform how much chicken to stock, exponential smoothing 
+   would ensure that the freezer had a consistent supply of chicken that was either slightly increasing over time,
+   slightly decreasing over time, or more constant. One would never have a scenario of massive supply swings, such as 
+   3x the usual chicken followed by no chicken. As such, exponential smoothing excels at near-term forecasts rather
+   than longer range forecasts or seasonality. 
+
+
+
+Q: What is stationarity? What is seasonality? Why Is Stationarity Important in Time Series Forecasting?
+A: Stationarity or statistical stationarity is when a time series has statistical properties (mean, variance,
+   autocorrelation, etc) that are all constant over time. Seasonality is a characteristic of a time series where
+   the data experiences regular and predictable changes associated with the calendar year, which would impact the
+   statistical properties of the data. Stationarity is important in Time Series Forecasting because most statistical
+   forecasting methods are based on the assumption that the time series can be made "stationarized" through 
+   mathematical transformations. A "stationarized"  series is easy to predict since all you have to do is assume that
+   the statistical properties will be the same in the future as in the past. An amusing quote to conceptualize this is
+   "I have seen the future and it is very much like the present, only longer." by Kehlog Albran, The Profit
+
+Q: How is seasonality different from cyclicality? Fill in the blanks:
+A: __seasonality_ is predictable, whereas _cyclicality__ is not.
+   Additionally, cyclicality has no fixed period and the duration of a cycle can fluctuate, aka
+   the length of the current cycle is not known beforehand. Seasonality on the other hand is 
+   unchanging(fixed and known) and associated with the calendar year.
