@@ -1,0 +1,30 @@
+========================================Interview Readiness
+Q: What does it mean to create a Docker image and why do we use Docker images
+A: To create a Docker image is to create a read-only template that contains a set of instructions 
+   for creating a container that can run on the Docker platform. We use them because it is a 
+   convenient way to package up applications (code,runtime,system tools, system libraries, settings) 
+   and preconfigured server environments, which can be deployed (as a container) on any system that 
+   has the Docker platform installed. Simply put, it lets us share the exact same environment with 
+   another person. This docker image can be made via a plain-text file known as a Dockerfile or 
+   interactively from and existing Docker image and manually tweaking it and saving out the new 
+   docker image. 
+
+Q: Please explain what is the difference from a Container vs a Virtual Machine?
+A: 
+              Docker Container                ||         Virtual Machine
+              ============================================================================================
+Boot time          ~several seconds           ||        ~several minutes
+Runs on            execution engine           ||        hypervisor
+Memory             less memory required       ||        require entire OS to load first
+Isolation          no provisions              ||        isolation mechanism in place
+Deployment         runs anywhere with docker  ||        can't just move one VM from one machine to another
+OS relationship    shared Host OS             ||        Each VM has host and guest OS within it
+Usage              more complex initial setup ||        simpler plug and play
+
+Q: What are 5 examples of container orchestration tools (please list tools)?
+A: Docker Swarm, Kubernetes, Redhat OpenShift, Apache Mesos, Amazon Elastic Kubernetes Service (Amazon EKS)
+
+Q: How does a Docker image differ from a Docker container?
+A: A Docker image is the read-only template that contains a set of instructions for creating a container. 
+   A container is what is created when docker builds a docker image, aka a container is launched from an image
+   and is a 'container layer' that is actually interacted with by users or machines. 
