@@ -1,0 +1,37 @@
+========================================Interview Readiness
+Q: What are 3 advantages of deploying using Model Serving methods Vs. deploying on GitHub Pages or HuggingFace for free?
+A: Three advantages to deploying using model serving methods are finer control over traffic management to process requests
+   concurrently, ability to do shadow mode deployment (run the inference but don't return the result to the customer) 
+   to test a new model, and a better ability to ensure consistent SLAs for model serving. In general, model serving 
+   methods all the practitioner more control over exactly how the ML stack is deployed, monitored, retrained, and its
+   general quality of service.
+
+Q: What is ML model deployment?
+A: Assuming this question refers to the act of deploying a model, to include serving it, model deployment is a process
+   where you not only make a model usable via a served application but also involves resource management, model 
+   monitoring, operations statistics, and handling model drifts. Put another way, it is not enough to merely serve a 
+   model to a user. MLOPs also involves making sure it is in good running condition through the span of its lifetime
+   inside the application, including any updates that are required over time.
+
+Q: What is Causal Inference and How Does It Work?
+A: Causal Inference is the process of analyzing the response of an effect variable when the cause of the effect variable
+   is changed. Put another way, if we change the cause of something, how does it impact the effect? From that, using 
+   causal inference we can determine causality behind an event. It is a way of reasoning that can be used to work with ML
+   algorithms. There are many methods to get it to work but the gold standard is A/B tests or randomized controlled trials(RCTs).
+   In this method we split examples into two groups: treatment and control. The treatment group gets the changed cause (treatment)
+   while the control group stays the same. The effect of the treatment is then observed.  ML techniques for casual inference
+   aren't exactly this but work of a similar principle. LIME for example perturbs the input and observes the changes in inference
+   outcome to see what causal relationships exist between variables in a model. Other methods use a similar enough approach of 
+   let me apply a treatment and observe the effect. 
+
+Q: What is serverless deployment and how its compared with deployment on server?
+A: Serverless deployment is a development model build for creating and running applications with the need for server management.
+   The servers are provisioned, maintained and scaled by a third-party cloud provider, so developers just need to write and 
+   deploy their code. In core principles, a serverless deployment is based on two key components: Function as a Service (FaaS)
+   and Backend as a Service (BaaS). 
+ 
+   When compared to a server-based deployment, serverless deployments have several differences. First, they have no fixed costs
+   and you only pay for what you use. Second, it scales on-demand rather than a manual upgrade process. Third, data access is 
+   more expansive by users since it it dictated by your cloud providers locations, which is probably more numerous than a custom
+   server-based deployment. Finally, one drawback is a lack of control and visibility of the server since you delegated server
+   maintenance and details to the cloud provider.
